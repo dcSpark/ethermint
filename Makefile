@@ -141,6 +141,10 @@ $(BUILD_TARGETS): go.sum $(BUILDDIR)/
 $(BUILDDIR)/:
 	mkdir -p $(BUILDDIR)/
 
+build-mina-lib:
+	go mod download
+	cd $(GOPATH)/pkg/mod/github.com/dcspark/go-ethereum@v1.10.26-mina/ && make mina
+
 docker-build:
 	# TODO replace with kaniko
 	docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} .
